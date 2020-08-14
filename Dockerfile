@@ -1,4 +1,4 @@
-FROM postgres:11.3
+FROM postgres:12.3
 MAINTAINER Joan Marc Carbo <jmcarbo@gmail.com>
 
 RUN apt-get update && \
