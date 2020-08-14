@@ -51,10 +51,10 @@ cat <<EOF >"$HOME/.mc/config.json"
 EOF
 	echo "restic_password: $RESTIC_PASSWORD"
 
-        mc ls "${MINIO_HOST}/${MINIO_BUCKET}"
-        if [[ $? -eq 1 ]];
+    mc ls "${MINIO_HOST}/${MINIO_BUCKET}"
+    if [[ $? -eq 1 ]];
 	then 
-	        mc mb "${MINIO_HOST}/${MINIO_BUCKET}" 
+	    mc mb "${MINIO_HOST}/${MINIO_BUCKET}" 
 		echo "Bucket ${MINIO_BUCKET} created" 
 		echo "$RESTIC_PASSWORD"	| mc pipe "${MINIO_HOST}/${MINIO_BUCKET}/restic_password.txt"
 		mc mb "${MINIO_HOST}/${MINIO_BUCKET}/restic"
@@ -67,9 +67,9 @@ EOF
 		RESTIC_PASSWORD=$(mc cat "${MINIO_HOST}/${MINIO_BUCKET}/restic_password.txt")
 	fi
 
-	echo $RESTIC_PASSWORD
+	# echo $RESTIC_PASSWORD
 	BACKUP_RESTIC_CMD="/usr/local/bin/restic backup /backup && /usr/local/bin/restic forget ${RESTIC_FORGET} && /usr/local/bin/restic prune"
-	export RESTIC_PASSWORD=$(mc cat "${MINIO_HOST}/${MINIO_BUCKET}/restic_password.txt")
+	#export RESTIC_PASSWORD=$(mc cat "${MINIO_HOST}/${MINIO_BUCKET}/restic_password.txt")
 
 cat <<EOF >>/root/.bashrc
 export AWS_ACCESS_KEY_ID=${MINIO_ACCESS_KEY}
