@@ -187,8 +187,3 @@ EOF
     	done
 	/restore.sh /backup/restore_target.sql
 fi
-
-echo "${CRON_TIME} /backup.sh >> /postgres_backup.log 2>&1" > /crontab.conf
-crontab  /crontab.conf
-echo "=> Running cron job"
-exec cron -f
